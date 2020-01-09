@@ -5,40 +5,51 @@ import java.util.ArrayList;
 import com.tadigital.trainingproject.customer.dao.CustomerDao;
 import com.tadigital.trainingproject.customer.entity.Customer;
 
+/*
+ * This class is used for executing Business Operations of Customer.
+ */
 public class CustomerService {
-	CustomerDao customerDao=new CustomerDao();
-	public boolean validateCustomerByEmailAndPassword(Customer customer,String sql) {
-		boolean status=customerDao.selectCustomerByEmailAndPassword(customer,sql);
-		
-		return status;
+	CustomerDao customerDao = new CustomerDao();
+
+	/*
+	 * This method is used to verify user using email and password.
+	 */
+	public boolean validateCustomerByEmailAndPassword(Customer customer, String sql) {
+		return customerDao.selectCustomerByEmailAndPassword(customer, sql);
 	}
-	
+
+	/*
+	 * This method is responsible for Registering a Customer.
+	 */
 	public boolean registerCustomer(Customer customer) {
-		boolean status=customerDao.insertCustomer(customer);
-		
-		return status;
+		return customerDao.insertCustomer(customer);
 	}
-	
+
+	/*
+	 * This method is used to Update the Customer's data.
+	 */
 	public boolean updateCustomer(Customer customer) {
-		boolean status=customerDao.updateCustomerDetails(customer);
-		
-		return status;
+		return customerDao.updateCustomerDetails(customer);
 	}
-	
+
+	/*
+	 * This method is used to Update the Password of Customer.
+	 */
 	public boolean changeCustomerPassword(Customer customer) {
-		boolean status=customerDao.updatePassword(customer);
-		
-		return status;
+		return customerDao.updatePassword(customer);
 	}
-	
-	public boolean updateSession(String email,String sesId) {
-		boolean status=customerDao.updateSession(email,sesId);
-		
-		return status;
+
+	/*
+	 * This method returns the status of Updation of the Session of Customer.
+	 */
+	public boolean updateSession(String email, String sesId) {
+		return customerDao.updateSession(email, sesId);
 	}
-	
-	public ArrayList<Customer> getAllCustomers(){
-		ArrayList<Customer> customersList=customerDao.selectAllCustomers();
-		return customersList;
+
+	/*
+	 * This method is used to get the Customer's list as ArrayList.
+	 */
+	public ArrayList<Customer> getAllCustomers() {
+		return customerDao.selectAllCustomers();
 	}
 }

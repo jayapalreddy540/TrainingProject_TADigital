@@ -1,5 +1,9 @@
 package com.tadigital.trainingproject.customer.entity;
 
+/*
+ * This is Customer Entity class used for Handling Data of Customer.
+ */
+
 public class Customer {
 	private int id;
 	private String firstName;
@@ -15,10 +19,16 @@ public class Customer {
 	private String state;
 	private String country;
 	private long mobile;
-	
+
+	/*
+	 * Default Constructor
+	 */
 	public Customer() {
 	}
-	
+
+	/*
+	 * Constructor with parameters used to set the Customer data.
+	 */
 	public Customer(int id, String firstName, String lastName, String dateOfBirth, String email, String password) {
 		this.id = id;
 		this.firstName = firstName;
@@ -27,37 +37,42 @@ public class Customer {
 		this.email = email;
 		this.password = password;
 	}
-	public Customer(String firstName, String lastName, String dateOfBirth, String gender, String address,String city,int zip,String state,String country,long mobile) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.gender=gender;
-		this.address=address;
-		this.city=city;
-		this.zip=zip;
-		this.state=state;
-		this.country=country;
-		this.mobile=mobile;
+
+	/*
+	 * Constructor with email,password as parameters to set data of Customer.
+	 */
+	public Customer(String email, String password) {
+		this.email = email;
+		this.password = password;
 	}
-	
+
+	/*
+	 * GETTER METHODS
+	 */
 	public int getId() {
 		return id;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public String getGender() {
 		return gender;
 	}
@@ -86,11 +101,13 @@ public class Customer {
 		return mobile;
 	}
 
-	
 	public String getNewPassword() {
 		return newPassword;
 	}
 
+	/*
+	 * SETTER METHODS
+	 */
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
 	}
@@ -126,20 +143,25 @@ public class Customer {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 }

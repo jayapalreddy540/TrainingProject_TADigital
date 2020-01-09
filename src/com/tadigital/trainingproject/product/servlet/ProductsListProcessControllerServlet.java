@@ -12,18 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.tadigital.trainingproject.product.entity.Product;
 import com.tadigital.trainingproject.product.service.ProductService;
 
-public class ProductsListProcessControllerServlet extends HttpServlet{
-		ProductService productService=new ProductService();
-		
-		@Override
-		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			ArrayList<Product> productsList=productService.getAllProducts();
-			
-			req.setAttribute("PRODUCTSLIST", productsList);
-			RequestDispatcher rd=req.getRequestDispatcher("ProductsList.jsp");
-			rd.forward(req, resp);
-					
-		}
+/*
+ * This class is the controller for retrieving the details of products. 
+ */
+public class ProductsListProcessControllerServlet extends HttpServlet {
+	ProductService productService = new ProductService();
+
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ArrayList<Product> productsList = productService.getAllProducts();
+
+		req.setAttribute("PRODUCTSLIST", productsList);
+		RequestDispatcher rd = req.getRequestDispatcher("ProductsList.jsp");
+		rd.forward(req, resp);
+
+	}
 
 }
-
