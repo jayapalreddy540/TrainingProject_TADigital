@@ -1,0 +1,13 @@
+RESOURCE,CATEGORY,SEVERITY,DESCRIPTION,FIX
+index.jsp,Bug,Minor,Replace this <bold> tag by <strong>,changed tag <bold> to <strong>
+index.jsp,Bug,Minor,Replace this <i> tag by <em>,changed tag <i> to <em>
+index.jsp,Bug,Major,"Add ""lang"" and/or ""xml:lang"" attributes to this ""<html>"" element",added lang=”en” to html tag
+index.jsp,CodeSmell,Major,"Add an ""aria-label"" or ""aria-labbelledby"" attribute to this element.",added aria-label attribute to the tag
+LoginProcessControllerServlet.java,Bug,Major,"Remove this misleading mutable servlet instance field or make it ""static"" and/or ""final""
+",
+Dao.java,vulnerability,Minor,"Use a logger to log this exception.
+",
+Dao.java,vulnerability,Blocker,Add password protection to the database,
+Dao.java,CodeSmell,Major,class.forName() should not load JDBC 4.0 + drivers,
+CustomerDao.java,CodeSmell,Minor,"The return type of this method should be an interface such as ""List"" rather than the implementation ""ArrayList"".",
+CustomerService.java,CodeSmell,Minor,Immediately return this expression instead of assigning it to the temporary variable ,returned the expression

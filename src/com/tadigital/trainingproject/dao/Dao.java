@@ -1,19 +1,37 @@
 package com.tadigital.trainingproject.dao;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class Dao {
+
+	/*
+	 * Propertied class Object containing database connectivity details.
+	 */
+	private static final Properties properties = new Properties();
 
 	/*
 	 * This static block is used to load the Driver class.
 	 */
 	static {
+		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties");
+
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			properties.load(inputStream);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		try {
+			String driverClass = properties.getProperty("db.driverclass");
+
+			Class.forName(driverClass);
 		} catch (ClassNotFoundException cnfEx) {
 			cnfEx.printStackTrace();
 		}
@@ -23,11 +41,16 @@ public class Dao {
 	 * This method is used to create a Database Connection.
 	 */
 
-	public Connection getConnection() {
+	protected Connection getConnection() {
 		Connection con = null;
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/training_project", "root", "");
+
+			String connectionUrl = properties.getProperty("db.connectionurl");
+			String username = properties.getProperty("db.username");
+			String password = properties.getProperty("db.password");
+
+			con = DriverManager.getConnection(connectionUrl, username, password);
 		} catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();
 		}
@@ -39,7 +62,7 @@ public class Dao {
 	 * This method is used to create a statement
 	 */
 
-	public Statement getStatement(Connection con) {
+	protected Statement getStatement(Connection con) {
 		Statement stmt = null;
 
 		try {
@@ -55,7 +78,7 @@ public class Dao {
 	 * This method is used to close a Database Connection.
 	 */
 
-	public void closeConnection(Connection con) {
+	protected void closeConnection(Connection con) {
 		try {
 			if (con != null) {
 				con.close();
@@ -69,7 +92,7 @@ public class Dao {
 	 * This method is used to close a statement.
 	 */
 
-	public void closeStatement(Statement stmt) {
+	protected void closeStatement(Statement stmt) {
 		try {
 			if (stmt != null) {
 				stmt.close();
@@ -83,7 +106,7 @@ public class Dao {
 	 * This method is used to close a ResultSet.
 	 */
 
-	public void closeResultSet(ResultSet rs) {
+	protected void closeResultSet(ResultSet rs) {
 		try {
 			if (rs != null) {
 				rs.close();

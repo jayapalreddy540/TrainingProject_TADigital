@@ -38,6 +38,7 @@ public class RegistrationProcessControllerServlet extends HttpServlet {
 
 		boolean status = customerService.registerCustomer(customer);
 		if (status) {
+			customerService.sendWelcomeEmail(email, name);
 			RequestDispatcher rd = req.getRequestDispatcher("RegistrationSuccess.jsp");
 			rd.forward(req, resp);
 		} else {
