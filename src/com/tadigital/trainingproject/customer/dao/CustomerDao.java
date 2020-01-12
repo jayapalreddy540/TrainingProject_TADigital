@@ -1,9 +1,10 @@
 package com.tadigital.trainingproject.customer.dao;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
 
 import com.tadigital.trainingproject.customer.entity.Customer;
 import com.tadigital.trainingproject.dao.Dao;
@@ -14,23 +15,22 @@ import java.sql.SQLException;
  * This class is used for Database Communications for Customer related data.
  */
 public class CustomerDao extends Dao {
+	private static final Logger LOGGER = Logger.getLogger(CustomerDao.class.getName());
 
 	/*
 	 * This method finds customer using email and password.
 	 */
-	public boolean selectCustomerByEmailAndPassword(Customer customer, String sql) {
+	public boolean validateCustomerByEmailAndPassword(Customer customer) {
+		LOGGER.info("execution starting.");
 		boolean status = false;
 
-		Connection con = getConnection();
-		Statement stmt = getStatement(con);
 		ResultSet rs = null;
-
 		try {
-			if (sql.equals("")) {
-				sql = "SELECT * FROM customer_info WHERE cust_email='" + customer.getEmail() + "' AND cust_pwd='"
-						+ customer.getPassword() + "'";
-			}
-			rs = stmt.executeQuery(sql);
+			PreparedStatement pStmt = getCustomerPreparedStatement("LOGIN");
+			pStmt.setString(1, customer.getEmail());
+			pStmt.setString(2, customer.getPassword());
+
+			rs = pStmt.executeQuery();
 			if (rs.next()) {
 				status = true;
 
@@ -40,13 +40,11 @@ public class CustomerDao extends Dao {
 				customer.setDateOfBirth(rs.getString(4));
 			}
 		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
+			LOGGER.error(sqlEx);
 		} finally {
 			closeResultSet(rs);
-			closeStatement(stmt);
-			closeConnection(con);
 		}
-
+		LOGGER.info("execution ending.");
 		return status;
 	}
 
@@ -54,26 +52,24 @@ public class CustomerDao extends Dao {
 	 * This method creates a new Customer
 	 */
 
-	public boolean insertCustomer(Customer customer) {
+	public boolean createCustomerByEmailAndPassword(Customer customer) {
+		LOGGER.info("execution starting.");
 		boolean status = false;
 
-		Connection con = getConnection();
-		Statement stmt = getStatement(con);
-
 		try {
-			String sql = "INSERT INTO customer_info(cust_fname,cust_email,cust_pwd) VALUES('" + customer.getFirstName()
-					+ "','" + customer.getEmail() + "','" + customer.getPassword() + "')";
-			int row = stmt.executeUpdate(sql);
+			PreparedStatement pStmt = getCustomerPreparedStatement("REGISTER");
+			pStmt.setString(1, customer.getFirstName());
+			pStmt.setString(2, customer.getEmail());
+			pStmt.setString(3, customer.getPassword());
+
+			int row = pStmt.executeUpdate();
 			if (row != 0) {
 				status = true;
 			}
 		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-			closeStatement(stmt);
-			closeConnection(con);
+			LOGGER.error(sqlEx);
 		}
-
+		LOGGER.info("execution ending.");
 		return status;
 	}
 
@@ -82,25 +78,22 @@ public class CustomerDao extends Dao {
 	 */
 
 	public boolean updateSession(String email, String sesId) {
+		LOGGER.info("execution starting.");
 		boolean status = false;
 
-		Connection con = getConnection();
-		Statement stmt = getStatement(con);
-
 		try {
-			String sql = "UPDATE customer_info SET cust_sesid='" + sesId + "' WHERE cust_email='" + email + "'";
+			PreparedStatement pStmt = getCustomerPreparedStatement("UPDATE_SESSION");
+			pStmt.setString(1, sesId);
+			pStmt.setString(2, email);
 
-			int row = stmt.executeUpdate(sql);
+			int row = pStmt.executeUpdate();
 			if (row != 0) {
 				status = true;
 			}
 		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-			closeStatement(stmt);
-			closeConnection(con);
+			LOGGER.error(sqlEx);
 		}
-
+		LOGGER.info("execution ending.");
 		return status;
 	}
 
@@ -109,29 +102,32 @@ public class CustomerDao extends Dao {
 	 */
 
 	public boolean updateCustomerDetails(Customer customer) {
+		LOGGER.info("execution starting.");
 		boolean status = false;
 
-		Connection con = getConnection();
-		Statement stmt = getStatement(con);
-
 		try {
-			String sql = "UPDATE customer_info SET cust_fname='" + customer.getFirstName() + "',cust_lname='"
-					+ customer.getLastName() + "',cust_dob='" + customer.getDateOfBirth() + "',cust_gender='"
-					+ customer.getGender() + "',cust_address='" + customer.getAddress() + "',cust_city='"
-					+ customer.getCity() + "',cust_zip=" + customer.getZip() + ",cust_state='" + customer.getState()
-					+ "',cust_country='" + customer.getCountry() + "',cust_mobile=" + customer.getMobile()
-					+ " WHERE cust_email='" + customer.getEmail() + "'";
-			int row = stmt.executeUpdate(sql);
+			PreparedStatement pStmt = getCustomerPreparedStatement("UPDATE_CUSTOMER");
+
+			pStmt.setString(1, customer.getFirstName());
+			pStmt.setString(2, customer.getLastName());
+			pStmt.setString(3, customer.getDateOfBirth());
+			pStmt.setString(4, customer.getGender());
+			pStmt.setString(5, customer.getAddress());
+			pStmt.setString(6, customer.getCity());
+			pStmt.setInt(7, customer.getZip());
+			pStmt.setString(8, customer.getState());
+			pStmt.setString(9, customer.getCountry());
+			pStmt.setLong(10, customer.getMobile());
+			pStmt.setString(11, customer.getEmail());
+
+			int row = pStmt.executeUpdate();
 			if (row != 0) {
 				status = true;
 			}
 		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-			closeStatement(stmt);
-			closeConnection(con);
+			LOGGER.error(sqlEx);
 		}
-
+		LOGGER.info("execution ending.");
 		return status;
 	}
 
@@ -140,25 +136,22 @@ public class CustomerDao extends Dao {
 	 */
 
 	public boolean updatePassword(Customer customer) {
+		LOGGER.info("execution starting.");
 		boolean status = false;
 
-		Connection con = getConnection();
-		Statement stmt = getStatement(con);
-
 		try {
-			String sql = "UPDATE customer_info SET cust_pwd='" + customer.getNewPassword() + "' WHERE cust_email='"
-					+ customer.getEmail() + "'";
-			int row = stmt.executeUpdate(sql);
+			PreparedStatement pStmt = getCustomerPreparedStatement("UPDATE_PASSWORD");
+			pStmt.setString(1, customer.getNewPassword());
+			pStmt.setString(2, customer.getEmail());
+
+			int row = pStmt.executeUpdate();
 			if (row != 0) {
 				status = true;
 			}
 		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-			closeStatement(stmt);
-			closeConnection(con);
+			LOGGER.error(sqlEx);
 		}
-
+		LOGGER.info("execution ending.");
 		return status;
 	}
 
@@ -167,15 +160,13 @@ public class CustomerDao extends Dao {
 	 */
 
 	public ArrayList<Customer> selectAllCustomers() {
+		LOGGER.info("execution starting.");
 		ArrayList<Customer> customersList = new ArrayList<Customer>();
-
-		Connection con = getConnection();
-		Statement stmt = getStatement(con);
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT * FROM customer_info";
-			rs = stmt.executeQuery(sql);
+			PreparedStatement pStmt = getCustomerPreparedStatement("RETRIEVE_ALL_CUSTOMERS");
+			rs = pStmt.executeQuery();
 			while (rs.next()) {
 				Customer customer = new Customer();
 
@@ -189,13 +180,11 @@ public class CustomerDao extends Dao {
 				customersList.add(customer);
 			}
 		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
+			LOGGER.error(sqlEx);
 		} finally {
 			closeResultSet(rs);
-			closeStatement(stmt);
-			closeConnection(con);
 		}
-
+		LOGGER.info("execution ending.");
 		return customersList;
 	}
 }

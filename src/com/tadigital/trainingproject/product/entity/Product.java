@@ -4,6 +4,7 @@ package com.tadigital.trainingproject.product.entity;
  * Entity Class for Product.
  */
 public class Product {
+
 	private int id;
 	private String name;
 	private double price;

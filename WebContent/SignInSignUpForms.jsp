@@ -18,9 +18,7 @@
 			*	Checking if Cookie is present and setting Session Attributes. 
 			*/
 			String sessionValue = (String) session.getAttribute("COOKIEVALUE");
-			String email = null;
 			if (sessionValue != null) {
-				email = sessionValue.substring(0, sessionValue.indexOf('-'));
 				Cookie[] allCookies = request.getCookies();
 				
 				if (allCookies != null) {

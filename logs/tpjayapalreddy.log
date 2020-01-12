@@ -1,0 +1,14 @@
+2020-01-12 23:10:48,412  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
+2020-01-12 23:10:48,415  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
+2020-01-12 23:10:48,417  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading dataabase properties.
+2020-01-12 23:10:48,418  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
+2020-01-12 23:10:48,775  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution starting.
+2020-01-12 23:10:48,776  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : parameters : email - jaypal@gmail.com
+2020-01-12 23:10:48,776  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution starting.
+2020-01-12 23:10:48,778  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution ending.
+2020-01-12 23:10:48,778  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : email : jaypal@gmail.com  session ID : B8723A3F4D8553628578340E2D8C00AF
+2020-01-12 23:10:48,779  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : COOKIE created as TADigital : jaypal@gmail.com-B8723A3F4D8553628578340E2D8C00AF
+2020-01-12 23:10:48,779  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateSession : execution starting.
+2020-01-12 23:10:48,847  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateSession : execution ending.
+2020-01-12 23:10:48,847  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : Dispatching to LoginSuccess.jsp
+2020-01-12 23:10:48,862  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution ending.

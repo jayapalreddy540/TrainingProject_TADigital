@@ -1,15 +1,17 @@
 package com.tadigital.trainingproject.product.dao;
 
 import java.sql.SQLException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
 
 import com.tadigital.trainingproject.dao.Dao;
 import com.tadigital.trainingproject.product.entity.Product;
 
 public class ProductDao extends Dao {
+	private static final Logger LOGGER = Logger.getLogger(ProductDao.class.getName());
 
 	/*
 	 * This method is used to retrieve all the Products.
@@ -18,8 +20,7 @@ public class ProductDao extends Dao {
 	public ArrayList<Product> selectAllProducts() {
 		ArrayList<Product> productsList = new ArrayList<Product>();
 
-		Connection con = getConnection();
-		Statement stmt = getStatement(con);
+		Statement stmt = openStatement();
 		ResultSet rs = null;
 
 		try {
@@ -34,11 +35,10 @@ public class ProductDao extends Dao {
 				productsList.add(product);
 			}
 		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
+			LOGGER.error(sqlEx);
 		} finally {
 			closeResultSet(rs);
 			closeStatement(stmt);
-			closeConnection(con);
 		}
 
 		return productsList;

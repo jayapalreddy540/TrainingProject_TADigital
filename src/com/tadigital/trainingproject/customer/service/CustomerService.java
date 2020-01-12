@@ -11,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
+
 import com.tadigital.trainingproject.customer.dao.CustomerDao;
 import com.tadigital.trainingproject.customer.entity.Customer;
 import com.tadigital.trainingproject.service.Service;
@@ -19,20 +21,22 @@ import com.tadigital.trainingproject.service.Service;
  * This class is used for executing Business Operations of Customer.
  */
 public class CustomerService extends Service {
+	private static final Logger LOGGER = Logger.getLogger(CustomerService.class.getName());
+	
 	CustomerDao customerDao = new CustomerDao();
 
 	/*
 	 * This method is used to verify user using email and password.
 	 */
-	public boolean validateCustomerByEmailAndPassword(Customer customer, String sql) {
-		return customerDao.selectCustomerByEmailAndPassword(customer, sql);
+	public boolean loginCustomerByEmailAndPassword(Customer customer) {
+		return customerDao.validateCustomerByEmailAndPassword(customer);
 	}
 
 	/*
 	 * This method is responsible for Registering a Customer.
 	 */
-	public boolean registerCustomer(Customer customer) {
-		return customerDao.insertCustomer(customer);
+	public boolean registerCustomerByEmailAndPassword(Customer customer) {
+		return customerDao.createCustomerByEmailAndPassword(customer);
 	}
 
 	/*
@@ -94,7 +98,7 @@ public class CustomerService extends Service {
 
 			status = true;
 		} catch (MessagingException mex) {
-			mex.printStackTrace();
+			LOGGER.error(mex);
 		}
 		return status;
 	}

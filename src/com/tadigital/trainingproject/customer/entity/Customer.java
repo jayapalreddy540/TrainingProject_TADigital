@@ -5,6 +5,7 @@ package com.tadigital.trainingproject.customer.entity;
  */
 
 public class Customer {
+
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -19,6 +20,7 @@ public class Customer {
 	private String state;
 	private String country;
 	private long mobile;
+	private String sesId;
 
 	/*
 	 * Default Constructor
@@ -104,10 +106,20 @@ public class Customer {
 	public String getNewPassword() {
 		return newPassword;
 	}
+	
+
+	public String getSesId() {
+		return sesId;
+	}
+
 
 	/*
 	 * SETTER METHODS
 	 */
+
+	public void setSesId(String sesId) {
+		this.sesId = sesId;
+	}
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
 	}

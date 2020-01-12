@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.tadigital.trainingproject.product.entity.Product;
 import com.tadigital.trainingproject.product.service.ProductService;
 
@@ -16,6 +18,8 @@ import com.tadigital.trainingproject.product.service.ProductService;
  * This class is the controller for retrieving the details of products. 
  */
 public class ProductsListProcessControllerServlet extends HttpServlet {
+	private static final Logger LOGGER = Logger.getLogger(ProductsListProcessControllerServlet.class.getName());
+
 	ProductService productService = new ProductService();
 
 	@Override

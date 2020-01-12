@@ -1,3 +1,4 @@
+<%@ page import="com.tadigital.trainingproject.customer.entity.Customer" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -17,10 +18,15 @@
 			/*
 			*	Checking if Cookie is present and setting Session Attributes. 
 			*/
-			String sessionValue = (String) session.getAttribute("COOKIEVALUE");
-			String email = null;
-			if (sessionValue != null) {
-				email = sessionValue.substring(0, sessionValue.indexOf('-'));
+			String name=null;
+			try {
+				Customer customer=(Customer)session.getAttribute("CUSTOMERDATA"); 
+				name =customer.getFirstName()+" "+customer.getLastName();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			if (name == null) {
 				Cookie[] allCookies = request.getCookies();
 				
 				if (allCookies != null) {
@@ -28,8 +34,7 @@
 						String cName = cookie.getName();
 						if (cName.equals("TADigital")) {
 							String cValue = cookie.getValue();
-							email = cValue.substring(0, cValue.indexOf('-'));
-							session.setAttribute("EMAIL", email);
+							//email = cValue.substring(0, cValue.indexOf('-'));
 							session.setAttribute("COOKIEVALUE", cValue);
 							break;
 						}
@@ -56,7 +61,7 @@
 					<div class="collapse navbar-collapse" id="main-navbar">
 						<ul class="nav navbar-nav navbar-right">
 							<%
-									if (email == null) {
+									if (name == null) {
 								%>
 							<li>
 								<a href="SignInSignUpForms.jsp">
@@ -76,7 +81,7 @@
 							<%
 									} else {
 								%>
-							<li><a href="#" class="text-white"><%=email%></a></li>
+							<li><a href="#" class="text-white"><%= name%></a></li>
 							<%
 									}
 								%>
@@ -89,7 +94,7 @@
 							<li><a href="#"> <span class="glyphicon glyphicon-envelope"></span>
 								</a></li>
 							<%
-									if (email != null) {
+									if (name != null) {
 								%>
 							<li><a href="Logout.jsp"> <span class="glyphicon glyphicon-log-out"></span>
 								</a></li>
