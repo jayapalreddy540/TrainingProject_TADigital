@@ -26,10 +26,17 @@ public class CustomerService extends Service {
 	CustomerDao customerDao = new CustomerDao();
 
 	/*
-	 * This method is used to verify user using email and password.
+	 * This method is used to verify user using Email and Password.
 	 */
 	public boolean loginCustomerByEmailAndPassword(Customer customer) {
 		return customerDao.validateCustomerByEmailAndPassword(customer);
+	}
+	
+	/*
+	 * This method is used to verify user using Email and Session.
+	 */
+	public boolean loginCustomerByEmailAndSession(Customer customer) {
+		return customerDao.validateCustomerByEmailAndSesId(customer);
 	}
 
 	/*
@@ -49,8 +56,8 @@ public class CustomerService extends Service {
 	/*
 	 * This method is used to Update the Password of Customer.
 	 */
-	public boolean changeCustomerPassword(Customer customer) {
-		return customerDao.updatePassword(customer);
+	public boolean changeCustomerPassword(Customer customer,String oldPassword,String newPassword) {
+		return customerDao.updatePassword(customer,oldPassword,newPassword);
 	}
 
 	/*

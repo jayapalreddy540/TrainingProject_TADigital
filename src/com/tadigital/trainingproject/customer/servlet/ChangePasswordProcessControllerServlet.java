@@ -25,13 +25,8 @@ public class ChangePasswordProcessControllerServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		LOGGER.info("execution starting.");
-		/*
-		 * Retrieving Session Attributes.
-		 */
-		HttpSession httpSession = req.getSession();
-		String email = (String) httpSession.getAttribute("SESSION_EMAIL");
-		String password = (String) httpSession.getAttribute("SESSION_PASSWORD");
 
+		HttpSession session = req.getSession();
 		/*
 		 * values from Password Update Form.
 		 */
@@ -41,20 +36,18 @@ public class ChangePasswordProcessControllerServlet extends HttpServlet {
 		LOGGER.info("parameters from PasswordUpdate Form : oldPassword - " + oldPassword + "  newPassword - "
 				+ newPassword);
 
-		if (newPassword.equals(retypePassword) && password.equals(oldPassword)) {
+		if (newPassword.equals(retypePassword)) {
 
-			Customer customer = new Customer();
-			customer.setNewPassword(newPassword);
-			customer.setEmail(email);
+			Customer customer = (Customer)session.getAttribute("CUSTOMERDATA");
 
-			boolean status = customerService.changeCustomerPassword(customer);
+			boolean status = customerService.changeCustomerPassword(customer,oldPassword,newPassword);
 			if (status) {
-				LOGGER.info("dispatching to index.jsp");
-				RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+				LOGGER.info("Password Change Successful, dispatching to index.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("Logout.jsp");
 				rd.forward(req, resp);
 			} else {
-				LOGGER.info("dispatching to RegistrationFailure.jsp");
-				RequestDispatcher rd = req.getRequestDispatcher("RegistrationFailure.jsp");
+				LOGGER.info("Password Change Failed, dispatching to ChangePassword.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("ChangePassword.jsp");
 				rd.forward(req, resp);
 			}
 		}

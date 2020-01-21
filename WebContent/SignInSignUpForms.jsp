@@ -13,25 +13,6 @@
 	</head>
 	
 	<body>
-		<%
-			/*
-			*	Checking if Cookie is present and setting Session Attributes. 
-			*/
-			String sessionValue = (String) session.getAttribute("COOKIEVALUE");
-			if (sessionValue != null) {
-				Cookie[] allCookies = request.getCookies();
-				
-				if (allCookies != null) {
-					for (Cookie cookie : allCookies) {
-						String cName = cookie.getName();
-						if (cName.equals("TADigital")) {
-							response.sendRedirect("index.jsp");
-						}
-					}
-				}
-			}
-		%>
-	
 		<div class="container-fluid">
 	
 			<!--START OF MAIN NAVBAR  -->

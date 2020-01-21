@@ -1,4 +1,3 @@
-<%@ page import="com.tadigital.trainingproject.customer.entity.Customer" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,30 +11,29 @@
 		<link rel="stylesheet" href="css/bootstrap.icon-large.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 	</head>
-	
+
 	<body>
 		<%
 			/*
 			*	Checking if Cookie is present and setting Session Attributes. 
 			*/
-			String name=null;
-			try {
-				Customer customer=(Customer)session.getAttribute("CUSTOMERDATA"); 
-				name =customer.getFirstName()+" "+customer.getLastName();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
-			
-			if (name == null) {
+			String name = (String)session.getAttribute("USERNAME");
+			if (name != null) {
 				Cookie[] allCookies = request.getCookies();
-				
 				if (allCookies != null) {
 					for (Cookie cookie : allCookies) {
 						String cName = cookie.getName();
 						if (cName.equals("TADigital")) {
 							String cValue = cookie.getValue();
-							//email = cValue.substring(0, cValue.indexOf('-'));
-							session.setAttribute("COOKIEVALUE", cValue);
+							session.setAttribute("TADigital",cValue);
+							String sessionVerified = (String)session.getAttribute("sessionVerified");
+							if(sessionVerified.equals("false")) {
+								//RequestDispatcher rd = request.getRequestDispatcher("Logout.jsp");
+								//rd.forward(request, response);
+		%>
+							<jsp:include page="/login" />
+		<%
+							}
 							break;
 						}
 					}
@@ -64,12 +62,12 @@
 									if (name == null) {
 								%>
 							<li>
-								<a href="SignInSignUpForms.jsp">
+								<a href="" data-toggle="modal" data-target="#signInModal">
 									<span class="glyphicon glyphicon-user"></span> Sign In
 								</a>
 							</li>
 							<li>
-								<a href="SignInSignUpForms.jsp">
+								<a href="" data-toggle="modal" data-target="#signUpModal">
 									<span class="glyphicon glyphicon-user"></span> Sign Up
 								</a>
 							</li>
@@ -81,7 +79,15 @@
 							<%
 									} else {
 								%>
-							<li><a href="#" class="text-white"><%= name%></a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"><%= name%><span class="caret"></span>
+							    </a>
+							    <ul class="dropdown-menu dropdown-menu-left userDropdown">
+							      <li><a href="UpdateAccountDetails.jsp">My Account</a></li>
+							      <li><a href="ChangePassword.jsp">Change Password</a></li>
+							      <li><a href="Logout.jsp">Sign Out</a></li>
+							    </ul>
+							</li>
 							<%
 									}
 								%>
@@ -93,16 +99,97 @@
 								</a></li>
 							<li><a href="#"> <span class="glyphicon glyphicon-envelope"></span>
 								</a></li>
-							<%
-									if (name != null) {
-								%>
-							<li><a href="Logout.jsp"> <span class="glyphicon glyphicon-log-out"></span>
-								</a></li>
-							<%
-									}
-								%>
 						</ul>
 					</div>
+				<!-- START OF SIGNIN MODAL -->
+					<div class="modal fade" tabindex="-1" id="signInModal" role="dialog">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header bg-primary">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title">Sign In</h4>
+					      </div>
+					      <div class="modal-body">
+						      <form name="signin" action="login" method="post">
+								<div class="form-group">
+										<label for="">Email</label>
+									<input type="email" class="form-control" name="signinEmail" required />
+								</div>
+								<div class="form-group">
+									<label for="">Password</label>
+									<input type="password" class="form-control" name="signinPassword" required />
+								</div>
+								<div class="form-group mx-sm-3 mb-2 text-center">
+									<button type="submit" name="Login" class="btn-sm btn-primary">
+										<span class="glyphicon glyphicon-log-out"></span> Login
+									</button>
+								</div>
+								<div class="form-group text-center">
+									<input type="checkbox" name="remember" value="true" /> Stay Signed In
+								</div>
+							</form>
+					      </div>
+					      <div class="modal-footer">
+					        <%
+						    	if(request.getAttribute("signInResult") == "false"){
+							%>
+								<div class="alert alert-danger" role="alert">
+								  <p class="alert-link text-center">Login Failed, Please try again.</p>
+								</div>
+							<%
+								}
+							%>
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+				<!-- END OF SIGNIN MODAL -->
+				
+				
+				<!-- START OF SIGNUP MODAL -->
+					<div class="modal fade" tabindex="-1" id="signUpModal" role="dialog">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header bg-primary">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title">Sign Up</h4>
+					      </div>
+					      <div class="modal-body">  
+							<form name="signup" action="register" method="post">
+								<div class="form-group">
+									<label for="">Name</label> 
+									<input type="text" class="form-control" name="signupName" required />
+								</div>
+								<div class="form-group">
+									<label for="">Email</label>
+									<input type="email" class="form-control" name="signupEmail" required />
+								</div>
+								<div class="form-group">
+									<label for="">Password</label>
+									<input type="password" class="form-control" name="signupPassword" required />
+								</div>
+								<div class="form-group mx-sm-3 mb-2 text-center">
+									<button type="submit" name="Register" class="btn-sm">
+										<span class="glyphicon glyphicon-user"></span> Register
+									</button>
+								</div>
+							</form>
+					      </div>
+					      <div class="modal-footer">
+					        <%
+						    	if(request.getAttribute("signUpResult") == "false"){
+							%>
+								<div class="alert alert-danger" role="alert">
+								  <p class="alert-link text-center">Registration Failed, Please try again.</p>
+								</div>
+							<%
+								}
+							%>
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+				<!-- END OF SIGNUP MODAL -->
 				</div>
 			</nav>
 			<!-- END OF MAIN NAVBAR -->
@@ -1260,7 +1347,7 @@
 			</div>
 			<br />
 			<!-- END OF IMAGE CAROUSEL -->
-	
+			
 			<!-- START OF DEALS OF THE DAY -->
 			<div class="row container-fluid">
 				<nav class="navbar navbar-inverse" aria-label="navbar-deals">

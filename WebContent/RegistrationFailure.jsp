@@ -7,7 +7,7 @@
 	<body>
 		<h2>
 			<font color="red"> Registration Not Successful. </font>
-			 <a href="SignInSignUpForms.jsp">Try Again.</a>
+			 <a href="index.jsp">Try Again.</a>
 		</h2>
 	</body>
 </html>

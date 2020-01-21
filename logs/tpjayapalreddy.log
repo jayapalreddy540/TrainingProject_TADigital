@@ -1,14 +1,106 @@
-2020-01-12 23:10:48,412  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
-2020-01-12 23:10:48,415  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
-2020-01-12 23:10:48,417  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading dataabase properties.
-2020-01-12 23:10:48,418  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
-2020-01-12 23:10:48,775  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution starting.
-2020-01-12 23:10:48,776  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : parameters : email - jaypal@gmail.com
-2020-01-12 23:10:48,776  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution starting.
-2020-01-12 23:10:48,778  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution ending.
-2020-01-12 23:10:48,778  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : email : jaypal@gmail.com  session ID : B8723A3F4D8553628578340E2D8C00AF
-2020-01-12 23:10:48,779  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : COOKIE created as TADigital : jaypal@gmail.com-B8723A3F4D8553628578340E2D8C00AF
-2020-01-12 23:10:48,779  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateSession : execution starting.
-2020-01-12 23:10:48,847  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateSession : execution ending.
-2020-01-12 23:10:48,847  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : Dispatching to LoginSuccess.jsp
-2020-01-12 23:10:48,862  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution ending.
+2020-01-20 00:28:38,915  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
+2020-01-20 00:28:38,919  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
+2020-01-20 00:28:38,923  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading database properties.
+2020-01-20 00:28:38,923  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
+2020-01-20 00:28:39,210  INFO  com.tadigital.trainingproject.customer.servlet.ChangePasswordProcessControllerServlet  service : execution starting.
+2020-01-20 00:28:39,210  INFO  com.tadigital.trainingproject.customer.servlet.ChangePasswordProcessControllerServlet  service : parameters from PasswordUpdate Form : oldPassword - jayapal  newPassword - 12345
+2020-01-20 00:28:39,210  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updatePassword : execution starting.
+2020-01-20 00:29:11,867  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution starting.
+2020-01-20 00:29:11,867  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution starting.
+2020-01-20 00:29:11,871  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution ending.
+2020-01-20 00:29:11,871  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : Login successful, dispatching to LoginSuccess.jsp
+2020-01-20 00:29:11,879  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution ending.
+2020-01-20 00:29:31,492  INFO  com.tadigital.trainingproject.customer.servlet.ChangePasswordProcessControllerServlet  service : execution starting.
+2020-01-20 00:29:31,496  INFO  com.tadigital.trainingproject.customer.servlet.ChangePasswordProcessControllerServlet  service : parameters from PasswordUpdate Form : oldPassword - jayapal  newPassword - 12345
+2020-01-20 00:29:31,496  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updatePassword : execution starting.
+2020-01-20 00:29:31,496  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updatePassword : email :jayapalreddymjpal@gmail.com
+2020-01-20 00:29:31,613  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updatePassword : password changed Successfully.
+2020-01-20 00:29:31,613  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updatePassword : execution ending.
+2020-01-20 00:29:31,613  INFO  com.tadigital.trainingproject.customer.servlet.ChangePasswordProcessControllerServlet  service : Password Change Successful, dispatching to index.jsp
+2020-01-20 00:29:31,616  INFO  com.tadigital.trainingproject.customer.servlet.ChangePasswordProcessControllerServlet  service : execution ending.
+2020-01-20 00:29:44,327  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution starting.
+2020-01-20 00:29:44,327  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution starting.
+2020-01-20 00:29:44,331  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution ending.
+2020-01-20 00:29:44,331  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : Login successful, dispatching to LoginSuccess.jsp
+2020-01-20 00:29:44,331  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution ending.
+2020-01-20 01:09:15,377  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
+2020-01-20 01:09:15,381  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
+2020-01-20 01:09:15,385  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading database properties.
+2020-01-20 01:09:15,385  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
+2020-01-20 01:09:15,693  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution starting.
+2020-01-20 01:09:15,693  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : parameters from CustomerDetails Update Form: 
+2020-01-20 01:09:15,693  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : fname:  lname:  gender: male address: seethampet city:  zip: 506371 state:  country: India mobile: 7036299791
+2020-01-20 01:09:15,697  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution starting.
+2020-01-20 01:09:15,697  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution ending.
+2020-01-20 01:09:15,701  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : dispatching to LoginFailure.jsp
+2020-01-20 01:09:15,709  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution ending
+2020-01-20 01:31:18,783  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
+2020-01-20 01:31:18,787  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
+2020-01-20 01:31:18,791  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading database properties.
+2020-01-20 01:31:18,791  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
+2020-01-20 01:31:19,090  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution starting.
+2020-01-20 01:31:19,090  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : parameters from CustomerDetails Update Form: 
+2020-01-20 01:31:19,090  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : fname: Jayapal Reddy lname: Myaka gender: male address: 1-185 city: Seethampet zip: 506371 state: Telangana country: India mobile: 7036299791
+2020-01-20 01:31:19,094  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution starting.
+2020-01-20 01:31:19,094  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution ending.
+2020-01-20 01:31:19,094  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : Details not updated, dispatching to UpdateAccountDetails.jsp
+2020-01-20 01:31:19,106  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution ending
+2020-01-20 01:38:56,958  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
+2020-01-20 01:38:56,962  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
+2020-01-20 01:38:56,966  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading database properties.
+2020-01-20 01:38:56,966  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
+2020-01-20 01:38:57,282  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution starting.
+2020-01-20 01:38:57,286  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution starting.
+2020-01-20 01:38:57,286  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution ending.
+2020-01-20 01:38:57,286  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : Login successful, dispatching to LoginSuccess.jsp
+2020-01-20 01:38:57,302  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution ending.
+2020-01-20 01:39:12,743  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution starting.
+2020-01-20 01:39:12,743  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : parameters from CustomerDetails Update Form: 
+2020-01-20 01:39:12,743  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : fname: Jayapal lname: Myaka gender: male address: 1-185 city: Seethampet zip: 506371 state: Telangana country: India mobile: 7036299791
+2020-01-20 01:39:12,743  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution starting.
+2020-01-20 01:39:12,747  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : fname : Jayapal lname : Myaka gender : male mobile : 7036299791 Email : null
+2020-01-20 01:39:12,747  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution ending.
+2020-01-20 01:39:12,747  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : Details not updated, dispatching to UpdateAccountDetails.jsp
+2020-01-20 01:39:12,751  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution ending
+2020-01-20 01:43:18,779  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
+2020-01-20 01:43:18,782  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
+2020-01-20 01:43:18,785  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading database properties.
+2020-01-20 01:43:18,786  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
+2020-01-20 01:43:19,113  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution starting.
+2020-01-20 01:43:19,115  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution starting.
+2020-01-20 01:43:19,116  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution ending.
+2020-01-20 01:43:19,116  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : Login successful, dispatching to LoginSuccess.jsp
+2020-01-20 01:43:19,128  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution ending.
+2020-01-20 01:43:34,404  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution starting.
+2020-01-20 01:43:34,406  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : parameters from CustomerDetails Update Form: 
+2020-01-20 01:43:34,406  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : fname: Jayapal lname: Myaka gender: male address: 1-185 city: Seethampet zip: 506371 state: Telangana country: India mobile: 7036299791
+2020-01-20 01:43:34,406  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution starting.
+2020-01-20 01:43:34,407  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : fname : Jayapal lname : Myaka gender : male mobile : 7036299791 Email : jayapalreddymjpal@gmail.com
+2020-01-20 01:43:34,745  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : Customer Details updated successfully
+2020-01-20 01:43:34,759  ERROR  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : java.sql.SQLException: Parameter index out of range (6 > number of parameters, which is 5).
+2020-01-20 01:43:34,760  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution ending.
+2020-01-20 01:43:34,760  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : Details not updated, dispatching to UpdateAccountDetails.jsp
+2020-01-20 01:43:34,762  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution ending
+2020-01-20 01:51:30,558  INFO  com.tadigital.trainingproject.service.Service  <clinit> : loading mail properties.
+2020-01-20 01:51:30,560  INFO  com.tadigital.trainingproject.service.Service  <clinit> : mail properties loaded successfully.
+2020-01-20 01:51:30,562  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : loading database properties.
+2020-01-20 01:51:30,563  INFO  com.tadigital.trainingproject.dao.Dao  <clinit> : database properties loaded successfully.
+2020-01-20 01:51:30,830  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution starting.
+2020-01-20 01:51:30,830  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : parameters from CustomerDetails Update Form: 
+2020-01-20 01:51:30,831  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : fname: Jayapal lname: Myaka gender: male address: 1-185 city: Seethampet zip: 506371 state: Telangana country: India mobile: 7036299791
+2020-01-20 01:52:03,588  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution starting.
+2020-01-20 01:52:03,589  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution starting.
+2020-01-20 01:52:03,590  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  validateCustomerByEmailAndPassword : execution ending.
+2020-01-20 01:52:03,591  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : Login successful, dispatching to LoginSuccess.jsp
+2020-01-20 01:52:03,593  INFO  com.tadigital.trainingproject.customer.servlet.LoginProcessControllerServlet  service : execution ending.
+2020-01-20 01:52:17,133  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution starting.
+2020-01-20 01:52:17,134  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : parameters from CustomerDetails Update Form: 
+2020-01-20 01:52:17,134  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : fname: Jayapal lname: Myaka gender: male address: 1-185 city: Seethampet zip: 506371 state: Telangana country: India mobile: 7036299791
+2020-01-20 01:52:17,134  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution starting.
+2020-01-20 01:52:17,134  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : fname : Jayapal lname : Myaka gender : male mobile : 7036299791 Email : jayapalreddymjpal@gmail.com
+2020-01-20 01:52:17,299  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : Customer Details updated successfully
+2020-01-20 01:52:17,446  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : address updated successfully
+2020-01-20 01:52:17,447  INFO  com.tadigital.trainingproject.customer.dao.CustomerDao  updateCustomerDetails : execution ending.
+2020-01-20 01:52:17,447  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : Details updated successfully, dispatching to index.jsp
+2020-01-20 01:52:17,449  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution ending
+2020-01-20 01:52:50,826  INFO  com.tadigital.trainingproject.customer.servlet.AccountDetailsUpdateProcessControllerServlet  service : execution starting.

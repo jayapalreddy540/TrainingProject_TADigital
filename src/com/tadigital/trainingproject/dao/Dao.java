@@ -19,10 +19,14 @@ public class Dao {
 
 	private static Connection con;
 	private static PreparedStatement customerLoginPreparedStatement;
+	private static PreparedStatement customerLoginUsingSessionPreparedStatement;
 	private static PreparedStatement customerRegisterPreparedStatement;
+	private static PreparedStatement customerRegisterAddressEnrollPreparedStatement;
 	private static PreparedStatement customerSessionUpdatePreparedStatement;
 	private static PreparedStatement customerDetailsUpdatePreparedStatement;
+	private static PreparedStatement customerAddressUpdatepreparedStatement;
 	private static PreparedStatement customerPasswordUpdatePreparedStatement;
+	private static PreparedStatement customerDetailsUsingEmailPreparedStatement;
 	private static PreparedStatement selectAllCustomersPreparedStatement;
 	/*
 	 * Propertied class Object containing database connectivity details.
@@ -33,13 +37,13 @@ public class Dao {
 	 * This static block is used to load the Driver class.
 	 */
 	static {
-		LOGGER.info("loading dataabase properties.");
+		LOGGER.info("loading database properties.");
 		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties");
 
 		try {
 			properties.load(inputStream);
 			LOGGER.info("database properties loaded successfully.");
-			
+
 			String driverClass = properties.getProperty("db.driverclass");
 			String connectionUrl = properties.getProperty("db.connectionurl");
 			String username = properties.getProperty("db.username");
@@ -49,10 +53,15 @@ public class Dao {
 			con = DriverManager.getConnection(connectionUrl, username, password);
 
 			customerLoginPreparedStatement = con.prepareStatement(CustomerSQL.LOGIN_CUSTOMER);
+			customerLoginUsingSessionPreparedStatement = con.prepareStatement(CustomerSQL.LOGIN_CUSTOMER_SESSION);
 			customerRegisterPreparedStatement = con.prepareStatement(CustomerSQL.REGISTER_CUSTOMER);
+			customerRegisterAddressEnrollPreparedStatement = con.prepareStatement(CustomerSQL.REGISTER_ADDRESS_ENROLL);
 			customerSessionUpdatePreparedStatement = con.prepareStatement(CustomerSQL.CUSTOMER_SESSION_UPDATE);
 			customerDetailsUpdatePreparedStatement = con.prepareStatement(CustomerSQL.CUSTOMER_DETAILS_UPDATE);
+			customerAddressUpdatepreparedStatement = con.prepareStatement(CustomerSQL.CUSTOMER_ADDRESS_UPDATE);
 			customerPasswordUpdatePreparedStatement = con.prepareStatement(CustomerSQL.CUSTOMER_PASSWORD_UPDATE);
+			customerDetailsUsingEmailPreparedStatement = con
+					.prepareStatement(CustomerSQL.SINGLE_CUSTOMER_DETAILS_USING_EMAIL);
 			selectAllCustomersPreparedStatement = con.prepareStatement(CustomerSQL.ALL_CUSTOMER_DETAILS);
 
 		} catch (IOException ioe) {
@@ -71,14 +80,22 @@ public class Dao {
 	protected PreparedStatement getCustomerPreparedStatement(String process) {
 		if (process.equals("LOGIN")) {
 			return customerLoginPreparedStatement;
+		} else if (process.equals("LOGIN_SESSION")) {
+			return customerLoginUsingSessionPreparedStatement;
 		} else if (process.equals("REGISTER")) {
 			return customerRegisterPreparedStatement;
+		} else if (process.equals("ADDRESS_ENROLL")) {
+			return customerRegisterAddressEnrollPreparedStatement;
 		} else if (process.equals("UPDATE_SESSION")) {
 			return customerSessionUpdatePreparedStatement;
 		} else if (process.equals("UPDATE_CUSTOMER")) {
 			return customerDetailsUpdatePreparedStatement;
+		} else if (process.equals("UPDATE_ADDRESS")) {
+			return customerAddressUpdatepreparedStatement;
 		} else if (process.equals("UPDATE_PASSWORD")) {
 			return customerPasswordUpdatePreparedStatement;
+		} else if (process.equals("RETRIEVE_CUSTOMER_USING_EMAIL")) {
+			return customerDetailsUsingEmailPreparedStatement;
 		} else if (process.equals("RETRIEVE_ALL_CUSTOMERS")) {
 			return selectAllCustomersPreparedStatement;
 		}

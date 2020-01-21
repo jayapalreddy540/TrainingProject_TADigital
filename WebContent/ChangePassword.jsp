@@ -1205,10 +1205,10 @@
 				<nav class="nav navbar" aria-labelledby="">
 					<div class="container-fluid">
 						<div class="navbar-header">
-							<div class="navbar-brand">MY ACCOUNT</div>
+							<div class="navbar-brand">CHANGE PASSWORD</div>
 					    </div>
 					    <ul class="nav navbar-nav navbar-right ">
-					    	<li><a href="#">Home / MY ACCOUNT</a></li>
+					    	<li><a href="#">Home / Change Password</a></li>
 					    </ul>
 					</div>
 				</nav>
@@ -1220,70 +1220,22 @@
 			<!-- START OF PASSWORD CHANGE FORM -->
 			
 			<div>
-				<form name="updateDetails" action="updateAccountDetails" method="post">
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="">First Name</label> <input type="text"
-								class="form-control" name="fname" placeholder="First Name">
-						</div>
-						<div class="form-group col-md-6">
-							<label for="">Last Name</label> <input type="text"
-								class="form-control" name="lname" placeholder="Last Name">
-						</div>
-					</div>
-					<div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gender" value="male">
-							<label class="form-check-label">Male</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gender" value="female">
-							<label class="form-check-label">Female</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gender" value="transgender">
-							<label class="form-check-label">Transgender</label>
-						</div>
+				<form name="passwordReset" action="changePassword" method="post">
+					<div class="form-group">
+					   <label for="">Old password</label>
+					   <input type="password" class="form-control" name="oldPassword" placeholder="Old Password" required />
 					</div>
 					<div class="form-group">
-						<label for="inputAddress">Address</label>
-						<input type="textarea" class="form-control" name="address" placeholder="Address">
+						<label for="">New Password</label>
+						<input type="password" class="form-control" name="newPassword" placeholder="New Password" required />
 					</div>
-					<div class="form-row">
-						<div class="form-group col-md-3">
-							<label for="">City</label> <input type="text"
-								class="form-control" name="city" placeholder="City">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="">Pin Code</label> <input type="text"
-								class="form-control" name="pincode" placeholder="Pincode">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="">State</label> <input type="text"
-								class="form-control" name="state" placeholder="State">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="">Country</label> <input type="text"
-								class="form-control" name="country" placeholder="country">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-4">
-							<label for="">Contact No</label> <input type="number"
-								class="form-control" name="contactnumber" placeholder="Contact No">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="">Email</label> <input type="email"
-								class="form-control" name="email" placeholder="Email">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="">Profile Picture</label>
-							<input type="file" class="form-control-file" name="profilepicture">
-						</div>
+					<div>
+						<label for="">Retype Password</label>
+						<input type="password" class="form-control" name="retypePassword" placeholder="Retype Password" required />
 					</div>
 					<div class="form-group mx-sm-3 mb-2 text-center">
-						<button type="submit" name="updateDetailsBtn" class="btn-sm">
-							<span class="glyphicon glyphicon-lock"></span> SAVE
+						<button type="submit" name="resetPassword" class="btn-sm">
+					    	<span class="glyphicon glyphicon-lock"></span> SAVE NEW PASSWORD
 						</button>
 					</div>
 				</form>

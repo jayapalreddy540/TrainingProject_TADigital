@@ -16,37 +16,44 @@
 CREATE DATABASE IF NOT EXISTS `training_project` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `training_project`;
 
--- Dumping structure for table training_project.customer_info
-CREATE TABLE IF NOT EXISTS `customer_info` (
+-- Dumping structure for table training_project.customer_address_information
+CREATE TABLE IF NOT EXISTS `customer_address_information` (
+  `add_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cust_id` int(11) DEFAULT NULL,
+  `add_address` varchar(1000) DEFAULT NULL,
+  `add_city` varchar(50) DEFAULT NULL,
+  `add_pincode` varchar(50) DEFAULT NULL,
+  `add_state` varchar(50) DEFAULT NULL,
+  `add_country` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`add_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table training_project.customer_address_information: ~1 rows (approximately)
+/*!40000 ALTER TABLE `customer_address_information` DISABLE KEYS */;
+INSERT INTO `customer_address_information` (`add_id`, `cust_id`, `add_address`, `add_city`, `add_pincode`, `add_state`, `add_country`) VALUES
+	(1, 1, '1-185', 'Seethampet', '506371', 'Telangana', 'India');
+/*!40000 ALTER TABLE `customer_address_information` ENABLE KEYS */;
+
+-- Dumping structure for table training_project.customer_personal_information
+CREATE TABLE IF NOT EXISTS `customer_personal_information` (
   `cust_id` int(11) NOT NULL AUTO_INCREMENT,
   `cust_fname` varchar(50) DEFAULT NULL,
   `cust_lname` varchar(50) DEFAULT NULL,
-  `cust_dob` date DEFAULT NULL,
-  `cust_email` varchar(50) NOT NULL,
+  `cust_gender` varchar(50) NOT NULL DEFAULT '0',
+  `cust_contact_no` varchar(50) NOT NULL DEFAULT '0',
+  `cust_email` varchar(50) DEFAULT NULL,
   `cust_pwd` varchar(50) DEFAULT NULL,
-  `cust_gender` varchar(50) DEFAULT NULL,
-  `cust_address` varchar(50) DEFAULT NULL,
-  `cust_city` varchar(50) DEFAULT NULL,
-  `cust_zip` int(11) DEFAULT NULL,
-  `cust_state` varchar(50) DEFAULT NULL,
-  `cust_country` varchar(50) DEFAULT NULL,
-  `cust_mobile` bigint(20) DEFAULT NULL,
-  `cust_sesid` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`cust_id`),
-  UNIQUE KEY `cust_email` (`cust_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `cust_sesid` varchar(500) NOT NULL DEFAULT '0',
+  `cust_stay_signed_in` varchar(50) NOT NULL DEFAULT '0',
+  `cust_profile_picture` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cust_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table training_project.customer_info: ~7 rows (approximately)
-/*!40000 ALTER TABLE `customer_info` DISABLE KEYS */;
-INSERT INTO `customer_info` (`cust_id`, `cust_fname`, `cust_lname`, `cust_dob`, `cust_email`, `cust_pwd`, `cust_gender`, `cust_address`, `cust_city`, `cust_zip`, `cust_state`, `cust_country`, `cust_mobile`, `cust_sesid`) VALUES
-	(1, 'arvind', 'kumar', '2019-12-19', 'arvind@gmail.com', '12345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(2, 'akshat', 'kumar', '2019-12-19', 'akshat@gmail.com', '12345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(3, 'zoheb', 'shaik', '2019-12-19', 'zoheb@gmail.com', '12345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(4, 'varun', 'kumar', '2019-12-19', 'varun@gmail.com', '12345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(5, 'sanjay', 'prakash', '2019-12-19', 'sanjay@gmaiil.com', '12345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(6, 'Jayapal', 'Myaka', '2019-12-28', 'jaypal@gmail.com', 'jaypal1', 'male', 'null', 'Warangal', 506371, 'Telangana', 'India', 7036299791, 'B27A41980F92CC237107BDE9E3D6B858'),
-	(7, 'monkey', 'king', '2019-12-28', 'monkey@gmail.com', 'monkey1', 'male', 'null', 'delhi', 100010, 'delhi', 'India', 9876543210, NULL);
-/*!40000 ALTER TABLE `customer_info` ENABLE KEYS */;
+-- Dumping data for table training_project.customer_personal_information: ~1 rows (approximately)
+/*!40000 ALTER TABLE `customer_personal_information` DISABLE KEYS */;
+INSERT INTO `customer_personal_information` (`cust_id`, `cust_fname`, `cust_lname`, `cust_gender`, `cust_contact_no`, `cust_email`, `cust_pwd`, `cust_sesid`, `cust_stay_signed_in`, `cust_profile_picture`) VALUES
+	(1, 'Jayapal', 'Myaka', 'male', '7036299791', 'jayapalreddymjpal@gmail.com', '12345', 'E94EA7BA5FE94C5BAA8145B8EE5CBCF5', '0', '0');
+/*!40000 ALTER TABLE `customer_personal_information` ENABLE KEYS */;
 
 -- Dumping structure for table training_project.product_info
 CREATE TABLE IF NOT EXISTS `product_info` (

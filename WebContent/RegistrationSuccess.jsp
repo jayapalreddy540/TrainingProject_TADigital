@@ -10,6 +10,6 @@
 				SignUp Successful.
 			</font>
 		</h2>
-		<a href="SignInSignUpForms.jsp">login Now</a>
+		<a href="index.jsp">login Now</a>
 	</body>
 </html>

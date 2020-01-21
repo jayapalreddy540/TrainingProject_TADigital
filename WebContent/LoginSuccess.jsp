@@ -1,4 +1,4 @@
-<%@ page import="com.tadigital.trainingproject.customer.entity.Customer,java.util.Date"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -9,10 +9,9 @@
 		<h2>
 			<font color="green"> Login Successful... </font>
 			<%
-				String email = (String) session.getAttribute("email");
-	
+				String name = (String) session.getAttribute("USERNAME");
 				out.print("<h2>Welcome to Our WebApplication </h2>");
-				out.println("<h3 style='color:red'>" + email + "</h3>");
+				out.println("<h3 style='color:red'>" + name + "</h3>");
 	
 				out.println("<p>" + session.getId() + "</p>");
 				out.println("<p>" + session.isNew() + "</p>");

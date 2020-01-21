@@ -31,24 +31,31 @@ public class RegistrationProcessControllerServlet extends HttpServlet {
 		String name = req.getParameter("signupName");
 		String email = req.getParameter("signupEmail");
 		String password = req.getParameter("signupPassword");
+		String fname;
+		String lname = "";
+		if (name.contains(" ")) {
+			fname = name.substring(0, name.indexOf(' '));
+			lname = name.substring(name.indexOf(' ') + 1);
+		} else {
+			fname = name;
+		}
 
-		LOGGER.info("parameters from Registration Form : name - " + name + "  email - " + email);
+		LOGGER.info(
+				"parameters from Registration Form : fname - " + fname + "  lname  - " + lname + "  email - " + email);
+		
 		/*
 		 * Creating Customer Object to for the process of registering customer.
 		 */
-		Customer customer = new Customer();
-		customer.setFirstName(name);
-		customer.setEmail(email);
-		customer.setPassword(password);
+		Customer customer = new Customer(fname,lname,email,password);
 
 		boolean status = customerService.registerCustomerByEmailAndPassword(customer);
 		if (status) {
 			customerService.sendWelcomeEmail(email, name);
-			LOGGER.info("dispatching to RegistrationSuccess.jsp");
+			LOGGER.info("Registration Successful, dispatching to RegistrationSuccess.jsp");
 			RequestDispatcher rd = req.getRequestDispatcher("RegistrationSuccess.jsp");
 			rd.forward(req, resp);
 		} else {
-			LOGGER.info("dispatching to RegistrationFailure.jsp");
+			LOGGER.info("Registration Failure, dispatching to RegistrationFailure.jsp");
 			RequestDispatcher rd = req.getRequestDispatcher("RegistrationFailure.jsp");
 			rd.forward(req, resp);
 		}

@@ -12,7 +12,6 @@ public class Customer {
 	private String dateOfBirth;
 	private String email;
 	private String password;
-	private String newPassword;
 	private String gender;
 	private String address;
 	private String city;
@@ -48,6 +47,16 @@ public class Customer {
 		this.password = password;
 	}
 
+	/*
+	 * Constructor with first name,last name,email,password to set data of Customer.
+	 */
+	public Customer(String firstName,String lastName,String email,String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+	}
+	
 	/*
 	 * GETTER METHODS
 	 */
@@ -103,11 +112,6 @@ public class Customer {
 		return mobile;
 	}
 
-	public String getNewPassword() {
-		return newPassword;
-	}
-	
-
 	public String getSesId() {
 		return sesId;
 	}
@@ -119,9 +123,6 @@ public class Customer {
 
 	public void setSesId(String sesId) {
 		this.sesId = sesId;
-	}
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
 	}
 
 	public void setGender(String gender) {

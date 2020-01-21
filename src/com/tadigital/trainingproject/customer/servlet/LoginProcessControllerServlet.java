@@ -27,46 +27,87 @@ public class LoginProcessControllerServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		LOGGER.info("execution starting.");
+		String email;
+		String cValue;
+		String pwd = null;
+		String sesId = null;
+		boolean status = false;
+
 		/*
 		 * Session Attributes.
 		 */
 		HttpSession session = req.getSession();
-
+		cValue = (String) session.getAttribute("TADigital");
+		session.setAttribute("sessionVerified", "false");
 		String staySignedIn = req.getParameter("remember");
-		String email = req.getParameter("signinEmail");
-		String pwd = req.getParameter("signinPassword");
-
-		LOGGER.info("parameters : email - " + email);
 
 		Customer customer = new Customer();
-		customer.setEmail(email);
-		customer.setPassword(pwd);
 
-		boolean status = customerService.loginCustomerByEmailAndPassword(customer);
+		if (cValue == null) {
+			email = req.getParameter("signinEmail");
+			pwd = req.getParameter("signinPassword");
+			customer.setEmail(email);
+			customer.setPassword(pwd);
 
-		if (status) {
-			session.setAttribute("CUSTOMERDATA", customer);
-			String sesId = session.getId();
+			status = customerService.loginCustomerByEmailAndPassword(customer);
 
-			if (staySignedIn != null) {
-				String cValue = email + "-" + sesId;
-				LOGGER.info("email : " + email + "  session ID : " + sesId);
-				Cookie cookie = new Cookie("TADigital", cValue);
-				cookie.setMaxAge(60 * 60 * 24);
-				resp.addCookie(cookie);
+			if (status) {
+				req.setAttribute("CUSTOMERDATA", customer);
+				session.setAttribute("CUSTOMERDATA", customer);
+				session.setAttribute("USERNAME", customer.getFirstName() + " " + customer.getLastName());
 
-				LOGGER.info("COOKIE created as TADigital : " + cValue);
+				if (staySignedIn != null) {
+					sesId = session.getId();
+					cValue = email + "-" + sesId;
+					Cookie cookie = new Cookie("TADigital", cValue);
+					cookie.setMaxAge(60 * 24 * 30);
+					resp.addCookie(cookie);
+					LOGGER.info("cookie set as TADigital : " + cValue);
+					
+					session.setAttribute("sessionVerified", "true");
+					customerService.updateSession(email, sesId);
+				}
 
-				boolean status1 = customerService.updateSession(email, sesId);
+				LOGGER.info("Login successful, dispatching to LoginSuccess.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("LoginSuccess.jsp");
+				rd.forward(req, resp);
+			} else {
+				LOGGER.info("Login Failure, dispatching to LoginFailure.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("LoginFailure.jsp");
+				rd.forward(req, resp);
 			}
-			LOGGER.info("Dispatching to LoginSuccess.jsp");
-			RequestDispatcher rd = req.getRequestDispatcher("LoginSuccess.jsp");
-			rd.forward(req, resp);
+
 		} else {
-			LOGGER.info("Dispatching to LoginSuccess.jsp");
-			RequestDispatcher rd = req.getRequestDispatcher("LoginFailure.jsp");
-			rd.forward(req, resp);
+			String[] values = cValue.split("-");
+			email = values[0];
+			sesId = values[1];
+			customer.setEmail(email);
+			customer.setSesId(sesId);
+
+			status = customerService.loginCustomerByEmailAndSession(customer);
+
+			if (status) {
+				req.setAttribute("CUSTOMERDATA", customer);
+
+				session.setAttribute("CUSTOMERDATA", customer);
+				session.setAttribute("USERNAME", customer.getFirstName() + " " + customer.getLastName());
+
+				sesId = session.getId();
+				customerService.updateSession(email, sesId);
+				
+				session.setAttribute("sessionVerified", "true");
+				LOGGER.info("Session Verification Success, dispatching with LoginSuccess.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("LoginSuccess.jsp");
+				rd.forward(req, resp);
+			} else {
+
+				session.setAttribute("sessionVerified", "false");
+				LOGGER.info("Session Verification Failed, dispatching to SignInSignUpForms.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("Logout.jsp");
+				rd.forward(req, resp);
+			}
 		}
+
 		LOGGER.info("execution ending.");
 	}
 }
